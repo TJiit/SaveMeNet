@@ -1,0 +1,150 @@
+import spacy
+import random
+import string
+import uuid
+from datetime import datetime, timedelta
+import fitz
+from PIL import Image
+import io
+import json
+import os
+
+try:
+    import pytesseract
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+    OCR_ENABLED = True
+except ImportError:
+    OCR_ENABLED = False
+    print("pytesseract not found. OCR will be disabled for scanned PDFs.")
+
+nlp = spacy.load("en_core_web_sm")
+PII_ENTITY_TYPES = ["PERSON", "GPE", "ORG", "DATE", "NORP", "EMAIL", "PHONE"]
+
+def detect_pii(text):
+    pii = []
+    doc = nlp(text)
+    for ent in doc.ents:
+        if ent.label_ in PII_ENTITY_TYPES:
+            pii.append({
+                "id": str(uuid.uuid4()),
+                "start": ent.start_char,
+                "end": ent.end_char,
+                "type": ent.label_,
+                "original": ent.text,
+                "value": ent.text,
+                "anonymized": False
+            })
+    return pii
+
+def anonymize_random(text, pii_list):
+    new_text = text
+    updated_pii = []
+    offset = 0
+    for pii in pii_list:
+        replacement = generate_random(pii["type"], pii["original"])
+        start = pii["start"] + offset
+        end = pii["end"] + offset
+        new_text = new_text[:start] + replacement + new_text[end:]
+        offset += len(replacement) - (end - start)
+        updated_pii.append({**pii, "start": start, "end": start + len(replacement),
+                            "value": replacement, "anonymized": True})
+    return new_text, updated_pii
+
+def anonymize_realistic(text, pii_list):
+    new_text = text
+    updated_pii = []
+    offset = 0
+    for pii in pii_list:
+        replacement = generate_realistic(pii["type"], pii["original"])
+        start = pii["start"] + offset
+        end = pii["end"] + offset
+        new_text = new_text[:start] + replacement + new_text[end:]
+        offset += len(replacement) - (end - start)
+        updated_pii.append({**pii, "start": start, "end": start + len(replacement),
+                            "value": replacement, "anonymized": True})
+    return new_text, updated_pii
+
+
+syllables = ["al","ben","cor","dan","el","fi","mor","nov","ri","tar",
+             "sha","li","ka","ro","mi","ver","jo","an","le","ton"]
+
+def combine_syllables(min_syl=2,max_syl=3):
+    num = random.randint(min_syl,max_syl)
+    return "".join(random.choice(syllables).capitalize() if i==0 else random.choice(syllables) for i in range(num))
+
+def realistic_name(): return f"{combine_syllables()} {combine_syllables()}"
+def realistic_city(): return combine_syllables()
+def realistic_company(): return f"{combine_syllables()} {combine_syllables()} {random.choice(['Ltd','Inc','Solutions','Systems'])}"
+def realistic_email(): return f"{combine_syllables(1,2).lower()}.{combine_syllables(1,2).lower()}@example.com"
+def realistic_phone(): return "+44" + "".join(random.choices(string.digits, k=10))
+
+def random_name(): return f"{random_word()} {random_word()}"
+def random_city(): return random_word()
+def random_company(): return random_word() + random.choice([" Ltd"," Inc"," Systems"," Solutions"])
+def random_email(): return f"{random_word().lower()}@mail.com"
+def random_phone(): return "+94" + "".join(random.choices(string.digits,k=9))
+def random_date():
+    start = datetime(1990,1,1)
+    end = datetime(2022,12,31)
+    return (start + timedelta(days=random.randint(0,(end-start).days))).strftime("%d %B %Y")
+def random_word(): return ''.join(random.choices(string.ascii_letters,k=random.randint(5,9))).capitalize()
+
+def generate_random(pii_type,_):
+    return {
+        "PERSON": random_name,
+        "ORG": random_company,
+        "GPE": random_city,
+        "EMAIL": random_email,
+        "PHONE": random_phone,
+        "DATE": random_date
+    }.get(pii_type, lambda:"REDACTED")()
+
+def generate_realistic(pii_type,_):
+    return {
+        "PERSON": realistic_name,
+        "ORG": realistic_company,
+        "GPE": realistic_city,
+        "EMAIL": realistic_email,
+        "PHONE": realistic_phone,
+        "DATE": random_date
+    }.get(pii_type, lambda:"REDACTED")()
+
+
+def ocr_pdf_page(pdf_path, page_number):
+    if not OCR_ENABLED:
+        return ""
+    doc = fitz.open(pdf_path)
+    page = doc[page_number]
+    pix = page.get_pixmap(dpi=300)
+    img = Image.open(io.BytesIO(pix.tobytes("png")))
+    text = pytesseract.image_to_string(img)
+    doc.close()
+    return text
+
+
+def restore_original_text(current_text, detected_pii, mapping_file):
+    if not os.path.exists(mapping_file):
+        print("Mapping file not found:", mapping_file)
+        return current_text
+
+    try:
+        with open(mapping_file, "r") as f:
+            mapping = json.load(f)
+    except Exception as e:
+        print("Error reading mapping:", e)
+        return current_text
+
+    restore_lookup = {item["value"]: item["original"] for item in mapping}
+
+    restored_text = current_text
+    offset = 0
+    for pii in detected_pii:
+        value = pii["value"]
+        if value in restore_lookup:
+            replacement = restore_lookup[value]
+            start = pii["start"] + offset
+            end = pii["end"] + offset
+            restored_text = restored_text[:start] + replacement + restored_text[end:]
+            offset += len(replacement) - (end - start)
+
+    return restored_text

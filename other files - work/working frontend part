@@ -1,0 +1,277 @@
+import sys
+import os
+import json
+import fitz  # PyMuPDF
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QFileDialog,
+    QMessageBox, QVBoxLayout
+)
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from QCustomQMainWindow import Ui_CustomMainWindow  # my UI imported (recheck name)
+from backend_logic import detect_pii, anonymize_random, anonymize_realistic, restore_original_text
+import pytesseract
+from PIL import Image
+
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.ui = Ui_CustomMainWindow()
+        self.ui.setupUi(self)
+
+
+        self.uploaded_file_path = None
+        self.original_text = ""
+        self.current_text = ""
+        self.detected_pii = []
+        self.file_loaded = False
+
+
+        self.viewer = QWebEngineView(self.ui.scrollAreaWidgetContents)
+        if self.ui.scrollAreaWidgetContents.layout() is None:
+            self.ui.scrollAreaWidgetContents.setLayout(QVBoxLayout())
+        self.ui.scrollAreaWidgetContents.layout().addWidget(self.viewer)
+
+
+        self.buttons = [
+            self.ui.homebutton,
+            self.ui.anonymizebutton,
+            self.ui.reportbutton,
+            self.ui.settingsbutton,
+            self.ui.restorebutton,
+            self.ui.aboutbutton
+        ]
+
+        self.default_style = "background-color:transparent; color:#0000FF; border:none;"
+        self.active_style = (
+            "background-color:#ADD8E6;"
+            "border-left:3px solid #6082B6;"
+            "font-weight:bold; color:#0000FF;"
+        )
+
+        for btn in self.buttons:
+            btn.setStyleSheet(self.default_style)
+
+        self.set_active_button(self.ui.homebutton)
+
+
+        self.ui.homebutton.clicked.connect(lambda: self.menu_clicked("home"))
+        self.ui.anonymizebutton.clicked.connect(lambda: self.menu_clicked("anonymize"))
+        self.ui.restorebutton.clicked.connect(lambda: self.menu_clicked("restore"))
+        self.ui.reportbutton.clicked.connect(lambda: self.menu_clicked("report"))
+        self.ui.settingsbutton.clicked.connect(lambda: self.menu_clicked("settings"))
+        self.ui.aboutbutton.clicked.connect(lambda: self.menu_clicked("about"))
+
+
+        self.ui.uploadbutton.clicked.connect(self.upload_file)
+
+        if hasattr(self.ui, "uploadnewbutton"):
+            self.ui.uploadnewbutton.clicked.connect(self.upload_new_file)
+
+        if hasattr(self.ui, "downloadbutton"):
+            self.ui.downloadbutton.clicked.connect(self.download_file)
+
+        if hasattr(self.ui, "scanbutton"):
+            self.ui.scanbutton.clicked.connect(self.start_scan)
+
+        if hasattr(self.ui, "randommask"):
+            self.ui.randommask.clicked.connect(lambda: self.start_anonymization("random"))
+
+        if hasattr(self.ui, "realisticmask"):
+            self.ui.realisticmask.clicked.connect(lambda: self.start_anonymization("realistic"))
+
+        if hasattr(self.ui, "restorebutton_2"):
+            self.ui.restorebutton_2.clicked.connect(self.restore_file)
+
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.show()
+
+    def menu_clicked(self, option):
+        if option == "home":
+            self.set_active_button(self.ui.homebutton)
+            if self.file_loaded:
+                self.ui.stackedWidget.setCurrentIndex(1)  # preview
+                self.show_preview()
+            else:
+                self.ui.stackedWidget.setCurrentIndex(0)  # upload
+        elif option == "anonymize":
+            self.set_active_button(self.ui.anonymizebutton)
+            self.ui.stackedWidget.setCurrentIndex(self.ui.stackedWidget.indexOf(self.ui.pageScan))
+        elif option == "restore":
+            self.set_active_button(self.ui.restorebutton)
+            self.ui.stackedWidget.setCurrentIndex(self.ui.stackedWidget.indexOf(self.ui.pageRestore))
+        elif option == "report":
+            self.set_active_button(self.ui.reportbutton)
+            self.ui.stackedWidget.setCurrentIndex(2)
+        elif option == "settings":
+            self.set_active_button(self.ui.settingsbutton)
+
+        elif option == "about":
+            self.set_active_button(self.ui.aboutbutton)
+            self.ui.stackedWidget.setCurrentIndex(6)
+
+    def set_active_button(self, active_btn):
+        for btn in self.buttons:
+            btn.setStyleSheet(self.active_style if btn == active_btn else self.default_style)
+
+    def upload_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Select Document",
+            "",
+            "Documents (*.pdf *.txt);;All Files (*)"
+        )
+        if not file_path:
+            return
+
+        self.uploaded_file_path = file_path
+        self.original_text = ""
+        self.current_text = ""
+        self.detected_pii = []
+        self.file_loaded = True
+
+        if file_path.lower().endswith(".txt"):
+            with open(file_path, "r", encoding="utf-8") as f:
+                self.original_text = f.read()
+        else:
+            try:
+                doc = fitz.open(file_path)
+                text_pages = []
+                for page in doc:
+                    text = page.get_text("text")
+                    if not text.strip():
+                        pix = page.get_pixmap()
+                        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+                        text = pytesseract.image_to_string(img)
+                    text_pages.append(text)
+                self.original_text = "\n\n".join(text_pages)
+                doc.close()
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to read PDF: {str(e)}")
+                self.file_loaded = False
+                return
+
+        self.current_text = self.original_text
+        self.ui.stackedWidget.setCurrentIndex(1)
+        self.show_preview()
+
+    def upload_new_file(self):
+        self.uploaded_file_path = None
+        self.original_text = ""
+        self.current_text = ""
+        self.detected_pii = []
+        self.file_loaded = False
+        self.ui.stackedWidget.setCurrentIndex(0)
+
+
+    def show_preview(self):
+        if not self.file_loaded:
+            return
+
+        if self.detected_pii:
+            html = self.highlight_pii(self.current_text, self.detected_pii)
+        else:
+            html = f"<pre>{self.current_text}</pre>"
+
+        self.viewer.setHtml(html)
+
+    def highlight_pii(self, text, pii_list):
+        result = ""
+        last = 0
+        for pii in sorted(pii_list, key=lambda x: x["start"]):
+            result += text[last:pii["start"]]
+            color = "#90EE90" if pii.get("anonymized") else "#FFB3B3"
+            result += f"<mark style='background:{color};'>{text[pii['start']:pii['end']]}</mark>"
+            last = pii["end"]
+        result += text[last:]
+        return f"<pre>{result}</pre>"
+
+
+    def start_scan(self):
+        if not self.file_loaded:
+            QMessageBox.warning(self, "No File", "Upload a document first.")
+            return
+
+        self.detected_pii = detect_pii(self.current_text)
+        QMessageBox.information(self, "Scan Complete", f"{len(self.detected_pii)} PII detected")
+        self.show_preview()
+
+    def start_anonymization(self, mode):
+        if not self.detected_pii:
+            QMessageBox.warning(self, "No PII", "Scan the document first.")
+            return
+
+        if mode == "random":
+            self.current_text, self.detected_pii = anonymize_random(self.current_text, self.detected_pii)
+        else:
+            self.current_text, self.detected_pii = anonymize_realistic(self.current_text, self.detected_pii)
+
+        QMessageBox.information(self, "Done", f"Anonymization complete ({mode})")
+        self.show_preview()
+
+    def download_file(self):
+        if not self.file_loaded:
+            QMessageBox.warning(self, "No File", "Nothing to download.")
+            return
+
+        base = os.path.basename(self.uploaded_file_path)
+        save_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Save File",
+            f"processed_{base}",
+            "PDF Files (*.pdf);;Text Files (*.txt)"
+        )
+
+        if not save_path:
+            return
+
+        try:
+            if save_path.lower().endswith(".txt"):
+                with open(save_path, "w", encoding="utf-8") as f:
+                    f.write(self.current_text)
+            else:
+                # PDF from text
+                doc = fitz.open()
+                text_pages = self.current_text.split("\n\n")
+                for page_text in text_pages:
+                    page = doc.new_page()
+                    page.insert_text((50, 50), page_text, fontsize=11)
+                doc.save(save_path)
+                doc.close()
+
+            mapping_file = save_path.replace(".pdf", "_mapping.json")
+            with open(mapping_file, "w") as f:
+                json.dump(self.detected_pii, f, indent=4)
+
+            QMessageBox.information(self, "Saved", "File downloaded successfully.")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", str(e))
+
+    def restore_file(self):
+        if not self.file_loaded:
+            QMessageBox.warning(self, "No File", "Upload a file first.")
+            return
+
+        mapping_file, _ = QFileDialog.getOpenFileName(
+            self,
+            "Select Mapping JSON",
+            "",
+            "JSON Files (*.json)"
+        )
+
+        if not mapping_file:
+            return
+
+        restored_text = restore_original_text(self.current_text, self.detected_pii, mapping_file)
+        self.current_text = restored_text
+        QMessageBox.information(self, "Restored", "Document restored to original PII.")
+        self.show_preview()
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    sys.exit(app.exec_())

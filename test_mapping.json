@@ -1,0 +1,191 @@
+[
+    {
+        "id": "3b89ed28-c389-4913-b5b3-8f301813d081",
+        "start": 245,
+        "end": 261,
+        "type": "DATE",
+        "original": "March 2011",
+        "value": "12 November 1998",
+        "anonymized": true
+    },
+    {
+        "id": "15242076-bfee-427c-877e-9c59965719b4",
+        "start": 265,
+        "end": 280,
+        "type": "ORG",
+        "original": "Current Company Name",
+        "value": "Benli Benan Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "c2ffc4ab-14ae-4a9a-82ab-fb303f52bd5e",
+        "start": 348,
+        "end": 364,
+        "type": "ORG",
+        "original": "Apparel",
+        "value": "Morsha Rinov Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "ee742550-37cc-4ec4-a861-537fc5dd3f0b",
+        "start": 438,
+        "end": 449,
+        "type": "PERSON",
+        "original": "Apparel",
+        "value": "Firo Corton",
+        "anonymized": true
+    },
+    {
+        "id": "60af4ca3-e522-4b7b-970a-23f92e04352d",
+        "start": 454,
+        "end": 464,
+        "type": "PERSON",
+        "original": "Footwear Departments",
+        "value": "Joka River",
+        "anonymized": true
+    },
+    {
+        "id": "3c4af58f-6df6-49fe-8380-0d7f9f088dbd",
+        "start": 660,
+        "end": 673,
+        "type": "DATE",
+        "original": "December 2006 to March 2011",
+        "value": "25 April 1993",
+        "anonymized": true
+    },
+    {
+        "id": "9fd4fbe1-d489-4f58-bf8c-b3fc6a9dae5c",
+        "start": 1085,
+        "end": 1103,
+        "type": "ORG",
+        "original": "Dick's Sporting Goods",
+        "value": "Kashaton Leben Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "bd7f0a72-c0e4-47ac-bb58-2bcc57c1be10",
+        "start": 1105,
+        "end": 1122,
+        "type": "ORG",
+        "original": "Nike Brand Coordinator",
+        "value": "Fikaro Lelian Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "a3a8e547-8299-4a06-b61a-031b23ef80cf",
+        "start": 1124,
+        "end": 1137,
+        "type": "DATE",
+        "original": "October 2005",
+        "value": "20 March 2016",
+        "anonymized": true
+    },
+    {
+        "id": "f94e40dc-bf9b-4077-8ce0-7fd9ba958199",
+        "start": 1141,
+        "end": 1155,
+        "type": "DATE",
+        "original": "December 2006",
+        "value": "28 August 1998",
+        "anonymized": true
+    },
+    {
+        "id": "919f309f-b761-4327-8c2d-23cbd52cf3c3",
+        "start": 1180,
+        "end": 1200,
+        "type": "ORG",
+        "original": "State",
+        "value": "Joromi Novmorver Inc",
+        "anonymized": true
+    },
+    {
+        "id": "dc0a613b-015c-4bd2-b5d0-0bb30284ea65",
+        "start": 1217,
+        "end": 1232,
+        "type": "ORG",
+        "original": "Nike",
+        "value": "Jojo Novnov Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "b56cfd2a-96b0-481f-90f5-e3e57185e678",
+        "start": 1436,
+        "end": 1462,
+        "type": "ORG",
+        "original": "Nike",
+        "value": "Roletar Shakaver Solutions",
+        "anonymized": true
+    },
+    {
+        "id": "aa7e6dd9-2181-4db9-963f-c3c714481a73",
+        "start": 1591,
+        "end": 1603,
+        "type": "DATE",
+        "original": "2000",
+        "value": "08 June 2004",
+        "anonymized": true
+    },
+    {
+        "id": "40277429-bb14-492d-b89b-aeafa1b8532f",
+        "start": 1650,
+        "end": 1667,
+        "type": "ORG",
+        "original": "State",
+        "value": "Tarli Dananle Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "2637ed1a-1c2e-42ca-8bd7-ee119ffc1353",
+        "start": 1670,
+        "end": 1694,
+        "type": "ORG",
+        "original": "USA\nProfessional Recognitions\nShrink Defender",
+        "value": "Dandan Shalian Solutions",
+        "anonymized": true
+    },
+    {
+        "id": "f1227ee8-f1bd-41a3-a5c4-a23059411e7c",
+        "start": 1711,
+        "end": 1727,
+        "type": "DATE",
+        "original": "August 2008",
+        "value": "20 November 2011",
+        "anonymized": true
+    },
+    {
+        "id": "cecfaed9-760d-4c7e-8f9c-48f2a718c5b2",
+        "start": 1729,
+        "end": 1742,
+        "type": "DATE",
+        "original": "July 2009",
+        "value": "11 April 2006",
+        "anonymized": true
+    },
+    {
+        "id": "486581cf-74dd-4995-83ef-c565d3b07985",
+        "start": 1744,
+        "end": 1760,
+        "type": "DATE",
+        "original": "December 2010",
+        "value": "19 December 1998",
+        "anonymized": true
+    },
+    {
+        "id": "7815c75a-978c-49f1-b8b4-8197bdcbd486",
+        "start": 1762,
+        "end": 1774,
+        "type": "DATE",
+        "original": "February 2011",
+        "value": "26 June 2011",
+        "anonymized": true
+    },
+    {
+        "id": "9355c704-73f1-4a46-a8f1-6e7a89c58837",
+        "start": 1776,
+        "end": 1788,
+        "type": "DATE",
+        "original": "April 2014",
+        "value": "27 June 2002",
+        "anonymized": true
+    }
+]

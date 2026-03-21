@@ -1,0 +1,1876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CustomMainWindow</class>
+ <widget class="QCustomQMainWindow" name="CustomMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1082</width>
+    <height>751</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Custom MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+   border:none;
+   background-color: transparent;
+   background:  transparent;
+   padding:0;
+   margin: 0;
+   color: #fff;
+}
+#centralwidget, #homebutton, #mainbodycontent{
+ background-image: url(&quot;C:/Users/Thakshila/Desktop/FYP 2025/Exam/New folder/bg 2.PNG&quot;);
+ /*background-color:#ADD8E6;*/
+}
+
+#header, #mainbody{
+   background-color: black;
+}
+#pushButton{
+   border: 1px solid #6082B6;
+   border-radius: 19px;
+   text-align: center;
+}
+QPushButton{
+   text-align: left;
+   padding: 5px 10px;
+   border-top-left-radius: 13px;
+   border-bottom-left-radius: 13px;
+}
+#homebutton{
+   border-left: 3px solid #6082B6;
+   font-weight:bold;
+}
+#uploadbutton{
+   background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #E6F0FF, stop:1 #FFFFFF);
+    color: #6082B6;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    border: 2px solid #ADD8E6;
+    text-align: center;
+    padding: 10px;
+}
+#scanbutton, #scanspecificbutton, #randommask, #realisticmask, #uploadnewbutton, #downloadbutton, #restorebutton_2, #editButton, #loginButton{
+   background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #E6F0FF, stop:1 #FFFFFF);
+    color: #6082B6;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #ADD8E6;
+    text-align: center;
+    padding: 10px;
+}
+#box1, #box2, #box3, #box4, #infoBox1, #infoBox2, #userWidget{
+   background-color: black;
+}
+#lineEdit, #lineEdit2, #lineEdit3{
+   background-color: #000080;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>11</number>
+    </property>
+    <property name="topMargin">
+     <number>11</number>
+    </property>
+    <property name="rightMargin">
+     <number>11</number>
+    </property>
+    <property name="bottomMargin">
+     <number>11</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="header" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item alignment="Qt::AlignLeft">
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item alignment="Qt::AlignLeft">
+           <widget class="QPushButton" name="menubutton">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/menu.png</normaloff>:/feather/icons/feather/menu.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>15</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: White;
+</string>
+            </property>
+            <property name="text">
+             <string>SaveMeNET</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignRight|Qt::AlignTop">
+        <widget class="QFrame" name="frame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="maximumSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: blue;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Qss/icons/_icons.qrc">
+              <normaloff>:/material_design/icons/material_design/notifications_none.png</normaloff>:/material_design/icons/material_design/notifications_none.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="activityBar">
+            <property name="maximumSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: blue;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/activity.png</normaloff>:/feather/icons/feather/activity.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="userButton">
+            <property name="minimumSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: blue;
+
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/user-check.png</normaloff>:/feather/icons/feather/user-check.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>35</width>
+              <height>35</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="mainbody">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>11</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="leftmenu" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>648</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frame_3">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="homebutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>Home</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/home.png</normaloff>:/feather/icons/feather/home.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                  <property name="checkable">
+                   <bool>false</bool>
+                  </property>
+                  <property name="autoExclusive">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="reportbutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>Detect PII</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/printer.png</normaloff>:/feather/icons/feather/printer.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                  <property name="checkable">
+                   <bool>false</bool>
+                  </property>
+                  <property name="autoExclusive">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="anonymizebutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>Anonymize</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/window_undock.png</normaloff>:/feather/icons/feather/window_undock.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_4">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="verticalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="restorebutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>Restore</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/font_awesome_regular/icons/font_awesome/regular/window-restore.png</normaloff>:/font_awesome_regular/icons/font_awesome/regular/window-restore.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="settingsbutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>Settings</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/settings.png</normaloff>:/feather/icons/feather/settings.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="aboutbutton">
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:white;</string>
+                  </property>
+                  <property name="text">
+                   <string>About</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Qss/icons/_icons.qrc">
+                    <normaloff>:/material_design/icons/material_design/info.png</normaloff>:/material_design/icons/material_design/info.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>35</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="mainbodycontent" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QStackedWidget" name="stackedWidget">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="currentIndex">
+             <number>6</number>
+            </property>
+            <widget class="QWidget" name="pageUpload">
+             <widget class="QFrame" name="uploadframe">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>20</y>
+                <width>522</width>
+                <height>577</height>
+               </rect>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QGridLayout" name="gridLayout">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap>../145872130-write-text-create-or-edit-document-pencil-and-paper-white-icon-with-shadow-on-transparent-removebg-preview.png</pixmap>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QPushButton" name="uploadbutton">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string>Upload Button</string>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>35</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageDocument">
+             <widget class="QFrame" name="previewframe">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>561</width>
+                <height>591</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <widget class="QScrollArea" name="scrollArea">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>10</y>
+                 <width>521</width>
+                 <height>571</height>
+                </rect>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>521</width>
+                  <height>571</height>
+                 </rect>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+             <widget class="QPushButton" name="downloadbutton">
+              <property name="geometry">
+               <rect>
+                <x>610</x>
+                <y>240</y>
+                <width>201</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Download</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="uploadnewbutton">
+              <property name="geometry">
+               <rect>
+                <x>610</x>
+                <y>320</y>
+                <width>201</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Upload New</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageDetect">
+             <widget class="QFrame" name="frame_5">
+              <property name="geometry">
+               <rect>
+                <x>100</x>
+                <y>40</y>
+                <width>651</width>
+                <height>581</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <widget class="QPushButton" name="scanbutton">
+               <property name="geometry">
+                <rect>
+                 <x>170</x>
+                 <y>500</y>
+                 <width>311</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Scan the whole Document</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="scanspecificbutton">
+               <property name="geometry">
+                <rect>
+                 <x>370</x>
+                 <y>590</y>
+                 <width>261</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Scan specific fields</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_3">
+               <property name="geometry">
+                <rect>
+                 <x>120</x>
+                 <y>70</y>
+                 <width>381</width>
+                 <height>351</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: White;
+</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>scanner_12456216.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <zorder>scanspecificbutton</zorder>
+              <zorder>scanbutton</zorder>
+              <zorder>label_3</zorder>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageRestore">
+             <widget class="QFrame" name="frame_7">
+              <property name="geometry">
+               <rect>
+                <x>39</x>
+                <y>39</y>
+                <width>731</width>
+                <height>571</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <widget class="QPushButton" name="restorebutton_2">
+               <property name="geometry">
+                <rect>
+                 <x>230</x>
+                 <y>500</y>
+                 <width>281</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Restore</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_4">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>70</y>
+                 <width>461</width>
+                 <height>371</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>../stock-vector-document-simple-icon-white-icon-with-shadow-on-transparent-background-1039454062-removebg-preview.png</pixmap>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageActivity">
+             <widget class="QFrame" name="frame_8">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>30</y>
+                <width>811</width>
+                <height>171</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <property name="spacing">
+                <number>20</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="box1">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QFrame" name="frame_9">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>139</width>
+                    <height>61</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item alignment="Qt::AlignTop">
+                    <widget class="QLabel" name="calNumber1">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QLabel" name="label_7">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>70</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>User Logins</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_6">
+                  <property name="geometry">
+                   <rect>
+                    <x>110</x>
+                    <y>20</y>
+                    <width>50</width>
+                    <height>50</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>35</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>50</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>group_16809493.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="box2">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QLabel" name="label_8">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>70</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Uploaded </string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_9">
+                  <property name="geometry">
+                   <rect>
+                    <x>110</x>
+                    <y>20</y>
+                    <width>50</width>
+                    <height>50</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>35</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>50</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>archive_18308534.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                 <widget class="QFrame" name="frame_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>139</width>
+                    <height>61</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item alignment="Qt::AlignTop">
+                    <widget class="QLabel" name="calNumber2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QLabel" name="label_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>100</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Documents</string>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="box3">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QLabel" name="label_24">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>70</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Successful</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_25">
+                  <property name="geometry">
+                   <rect>
+                    <x>110</x>
+                    <y>20</y>
+                    <width>50</width>
+                    <height>50</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>35</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>50</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>trophy_9737648.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                 <widget class="QFrame" name="frame_18">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>139</width>
+                    <height>61</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <item alignment="Qt::AlignTop">
+                    <widget class="QLabel" name="calNumber3">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QLabel" name="label_26">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>100</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Anonymizations</string>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="box4">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QLabel" name="label_27">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>70</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Successful</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_28">
+                  <property name="geometry">
+                   <rect>
+                    <x>120</x>
+                    <y>20</y>
+                    <width>50</width>
+                    <height>50</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>35</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>50</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>restore-settings_12500322.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                 <widget class="QFrame" name="frame_19">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>20</y>
+                    <width>139</width>
+                    <height>61</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <item alignment="Qt::AlignTop">
+                    <widget class="QLabel" name="calNumber4">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QLabel" name="label_29">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>100</y>
+                    <width>111</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Restorations</string>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QFrame" name="frame_20">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>240</y>
+                <width>801</width>
+                <height>381</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <property name="spacing">
+                <number>20</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QWidget" name="infoBox1" native="true">
+                 <widget class="QFrame" name="frame_21">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>331</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <widget class="QLabel" name="label_5">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>10</y>
+                     <width>251</width>
+                     <height>31</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <italic>false</italic>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Document History</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QFrame" name="frame_22">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>80</y>
+                    <width>761</width>
+                    <height>271</height>
+                   </rect>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <widget class="QScrollArea" name="historyScroll">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>741</width>
+                     <height>251</height>
+                    </rect>
+                   </property>
+                   <property name="widgetResizable">
+                    <bool>true</bool>
+                   </property>
+                   <widget class="QWidget" name="scrollAreaWidgetContents_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>741</width>
+                      <height>251</height>
+                     </rect>
+                    </property>
+                   </widget>
+                  </widget>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageScan">
+             <widget class="QFrame" name="frame_6">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>20</y>
+                <width>741</width>
+                <height>591</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <widget class="QPushButton" name="randommask">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>530</y>
+                 <width>201</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Random</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="realisticmask">
+               <property name="geometry">
+                <rect>
+                 <x>400</x>
+                 <y>520</y>
+                 <width>201</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Realistic</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text1">
+               <property name="geometry">
+                <rect>
+                 <x>60</x>
+                 <y>20</y>
+                 <width>651</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color:white;</string>
+               </property>
+               <property name="text">
+                <string>In this page, you will be able to mask the detetcted PII with temporary replacements 
+till you require your original format. </string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="image3">
+               <property name="geometry">
+                <rect>
+                 <x>60</x>
+                 <y>160</y>
+                 <width>521</width>
+                 <height>311</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>../Screenshot_2026-02-01_052337-removebg-preview.png</pixmap>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="text2">
+               <property name="geometry">
+                <rect>
+                 <x>60</x>
+                 <y>100</y>
+                 <width>711</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color:white;</string>
+               </property>
+               <property name="text">
+                <string>Choose one of the following for the specific replacement type you are looking for.</string>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="userPage">
+             <widget class="QFrame" name="frame_11">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>30</y>
+                <width>731</width>
+                <height>581</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <widget class="QWidget" name="userWidget" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>10</y>
+                 <width>721</width>
+                 <height>541</height>
+                </rect>
+               </property>
+               <widget class="QLabel" name="label_11">
+                <property name="geometry">
+                 <rect>
+                  <x>270</x>
+                  <y>30</y>
+                  <width>171</width>
+                  <height>141</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>group_16809493.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>190</x>
+                  <y>240</y>
+                  <width>441</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="placeholderText">
+                 <string>(eg:  John Dean)</string>
+                </property>
+                <property name="clearButtonEnabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit2">
+                <property name="geometry">
+                 <rect>
+                  <x>190</x>
+                  <y>310</y>
+                  <width>441</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="placeholderText">
+                 <string>(eg: 12345678)</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit3">
+                <property name="geometry">
+                 <rect>
+                  <x>190</x>
+                  <y>380</y>
+                  <width>441</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="placeholderText">
+                 <string>(eg: 1234@gmail.com)</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="userName">
+                <property name="geometry">
+                 <rect>
+                  <x>70</x>
+                  <y>240</y>
+                  <width>91</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>User Name</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="password">
+                <property name="geometry">
+                 <rect>
+                  <x>74</x>
+                  <y>310</y>
+                  <width>71</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Password</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="email">
+                <property name="geometry">
+                 <rect>
+                  <x>80</x>
+                  <y>380</y>
+                  <width>71</width>
+                  <height>20</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Email</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="loginButton">
+                <property name="geometry">
+                 <rect>
+                  <x>400</x>
+                  <y>450</y>
+                  <width>141</width>
+                  <height>51</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>Log Out</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="editButton">
+                <property name="geometry">
+                 <rect>
+                  <x>180</x>
+                  <y>450</y>
+                  <width>141</width>
+                  <height>51</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>Edit</string>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="rightmenu" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomQMainWindow</class>
+   <extends>QMainWindow</extends>
+   <header>Custom_Widgets.QCustomQMainWindow</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Qss/icons/_icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

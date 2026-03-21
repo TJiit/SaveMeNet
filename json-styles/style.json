@@ -1,0 +1,47 @@
+{
+    "ShowLogs": true,
+    "QtBinding": "PySide5",
+    "CheckForMissingicons": true,
+    "LiveCompileQss": true,
+    "QMainWindow": {
+        "title": "SaveMeNET"
+    },
+    "QSettings": {
+        "AppSettings": {
+            "OrginizationName": "smn",
+            "ApplicationName": "SaveMeNET",
+            "OrginizationDormain": "smn.com"
+        },
+        "ThemeSettings": {
+            "QtDesignerIconsColor": "#0000FF",
+            "CustomThemes": [
+                {
+                    "Background-color": "#FFFFFF",
+                    "Text-color": "#000000",
+                    "Accent-color": "#008080",
+                    "Icons-color": "#FFFFFF",
+                    "Theme-name": "Default-theme",
+                    "Default-Theme": true
+                }
+            ]
+        }
+    },
+    "QPushButtonGroup": [
+        {
+            "Buttons":[
+                "homebutton",
+                "anonymizebutton",
+                "reportbutton",
+                "settingsbutton",
+                "helpbutton",
+                "aboutbutton"
+            ],
+            "Style" :[
+                {
+                    "Active" : "background-color:#ADD8E6; border-left: 3px solid #6082B6; font-weight:bold;",
+                    "NotActive": "background-color:transparent"
+                }
+            ]
+        }
+    ]
+}

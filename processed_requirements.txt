@@ -1,0 +1,254 @@
+[
+    {
+        "id": "a4923abd-fb59-4a54-ace1-9468065cee56",
+        "start": 36,
+        "end": 47,
+        "type": "PERSON",
+        "original": "John Smith",
+        "value": "Danton Fian",
+        "anonymized": true
+    },
+    {
+        "id": "36828fb5-98c6-442c-9141-173aeb9d01d2",
+        "start": 96,
+        "end": 113,
+        "type": "DATE",
+        "original": "77 123 4567",
+        "value": "08 September 1994",
+        "anonymized": true
+    },
+    {
+        "id": "2577d426-45bc-4d2f-a7b4-95eb27e73304",
+        "start": 169,
+        "end": 175,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Tontar",
+        "anonymized": true
+    },
+    {
+        "id": "d9c0b31e-33d7-4c78-a203-b859ecb6ecf2",
+        "start": 229,
+        "end": 248,
+        "type": "ORG",
+        "original": "Computer Science",
+        "value": "Novtarver Kasha Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "7c4a0f7e-1f0f-4fbf-bbf8-38ef0fb3b989",
+        "start": 314,
+        "end": 330,
+        "type": "ORG",
+        "original": "UI",
+        "value": "Milele Verka Inc",
+        "anonymized": true
+    },
+    {
+        "id": "50f5c041-c48d-4e7d-abf4-56b1b22537d3",
+        "start": 475,
+        "end": 491,
+        "type": "ORG",
+        "original": "Computer Science\nUniversity of Westminster \u2013 Informatics Institute of Technology",
+        "value": "Ancor Kariri Inc",
+        "anonymized": true
+    },
+    {
+        "id": "6ea73646-13b5-4a3c-a708-5ea145f2972a",
+        "start": 493,
+        "end": 518,
+        "type": "ORG",
+        "original": "IIT",
+        "value": "Shaton Danficor Solutions",
+        "anonymized": true
+    },
+    {
+        "id": "f50587fe-c574-4943-bb2f-3c588a6698e6",
+        "start": 539,
+        "end": 543,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Aljo",
+        "anonymized": true
+    },
+    {
+        "id": "7c1b2335-36dc-4afe-aa51-c8fae6604205",
+        "start": 550,
+        "end": 563,
+        "type": "DATE",
+        "original": "September 2022",
+        "value": "09 April 2005",
+        "anonymized": true
+    },
+    {
+        "id": "8b8ae5b2-b20e-4837-891f-c6fc0a46b18c",
+        "start": 629,
+        "end": 643,
+        "type": "ORG",
+        "original": "ABC Tech Solutions\nLocation: Colombo",
+        "value": "Danan Anmi Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "3314ac6a-c2c1-4b0f-8e50-fb3571560b8d",
+        "start": 645,
+        "end": 653,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Morlenov",
+        "anonymized": true
+    },
+    {
+        "id": "ffc61dc6-2df4-4c97-a7b1-07342f544362",
+        "start": 689,
+        "end": 702,
+        "type": "DATE",
+        "original": "June 2024",
+        "value": "04 March 2016",
+        "anonymized": true
+    },
+    {
+        "id": "ea8989bf-0ae2-4989-885d-dbb27e528211",
+        "start": 705,
+        "end": 718,
+        "type": "DATE",
+        "original": "August 2024",
+        "value": "12 March 2012",
+        "anonymized": true
+    },
+    {
+        "id": "cb2ded44-50b0-46ea-9c55-913cc91617a0",
+        "start": 789,
+        "end": 807,
+        "type": "ORG",
+        "original": "HTML",
+        "value": "Letar Katonmor Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "5098adbf-7aa4-4151-ac3f-05ce7fbf9e28",
+        "start": 809,
+        "end": 825,
+        "type": "ORG",
+        "original": "CSS",
+        "value": "Corli Rorole Inc",
+        "anonymized": true
+    },
+    {
+        "id": "0b2d476e-c94c-4757-ad1f-7a23413329f7",
+        "start": 831,
+        "end": 855,
+        "type": "ORG",
+        "original": "JavaScript",
+        "value": "Mortoncor Rifi Solutions",
+        "anonymized": true
+    },
+    {
+        "id": "5214b394-14b1-4d07-800c-d00d6a2a78db",
+        "start": 879,
+        "end": 900,
+        "type": "ORG",
+        "original": "UI",
+        "value": "Toncoral Mijo Systems",
+        "anonymized": true
+    },
+    {
+        "id": "33bfa4c8-19b4-4502-b7e3-e3f19ac50b37",
+        "start": 993,
+        "end": 1013,
+        "type": "ORG",
+        "original": "Projects\n\nStudent Activity Management System\nOrganization: University Project\nLocation: Colombo",
+        "value": "Rishael Coralnov Inc",
+        "anonymized": true
+    },
+    {
+        "id": "9d1c76d9-be7e-49fb-aec9-76e16c8d537f",
+        "start": 1015,
+        "end": 1021,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Anmimi",
+        "anonymized": true
+    },
+    {
+        "id": "e52b81ca-2c43-4b56-87aa-3d50cfa509db",
+        "start": 1028,
+        "end": 1040,
+        "type": "DATE",
+        "original": "March 2024",
+        "value": "23 June 2018",
+        "anonymized": true
+    },
+    {
+        "id": "29f54c31-ab69-443a-9164-e67c99c3221f",
+        "start": 1179,
+        "end": 1202,
+        "type": "ORG",
+        "original": "Events & Workshops",
+        "value": "Novrocor Fielka Systems",
+        "anonymized": true
+    },
+    {
+        "id": "bc64bf2d-6619-4d1b-919c-f809e1928e4f",
+        "start": 1285,
+        "end": 1293,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Novbenro",
+        "anonymized": true
+    },
+    {
+        "id": "1b5a9105-db5c-4678-8447-96e1a2639db0",
+        "start": 1306,
+        "end": 1319,
+        "type": "DATE",
+        "original": "15 May 2024",
+        "value": "12 March 1999",
+        "anonymized": true
+    },
+    {
+        "id": "6a479d4c-be7e-4be4-900d-2c6ed40c34b6",
+        "start": 1402,
+        "end": 1406,
+        "type": "GPE",
+        "original": "Sri Lanka",
+        "value": "Eljo",
+        "anonymized": true
+    },
+    {
+        "id": "a1543d40-8091-49e5-8d9c-78358dee9ddb",
+        "start": 1419,
+        "end": 1435,
+        "type": "DATE",
+        "original": "20 July 2024",
+        "value": "27 December 1994",
+        "anonymized": true
+    },
+    {
+        "id": "3fb2a9f2-e457-4c88-b93b-a06403b98553",
+        "start": 1451,
+        "end": 1468,
+        "type": "ORG",
+        "original": "CSS",
+        "value": "Joan Liro Systems",
+        "anonymized": true
+    },
+    {
+        "id": "1177ac49-3dcc-44db-bfb0-a22caa5b2eab",
+        "start": 1470,
+        "end": 1486,
+        "type": "ORG",
+        "original": "JavaScript",
+        "value": "Danal Dantar Ltd",
+        "anonymized": true
+    },
+    {
+        "id": "e46dbc2e-d95a-4212-a3fa-d4fb7ef22f46",
+        "start": 1496,
+        "end": 1511,
+        "type": "PERSON",
+        "original": "Java\n\nUI/UX Design",
+        "value": "Alanben Rieltar",
+        "anonymized": true
+    }
+]
