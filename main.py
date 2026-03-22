@@ -4,7 +4,7 @@ import json
 import fitz  # PyMuPDF
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QFileDialog,
-    QMessageBox, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QDialog
+    QMessageBox, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QDialog, QLineEdit  
 )
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import Qt
@@ -14,24 +14,35 @@ import pytesseract
 from PIL import Image
 from datetime import datetime
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #file path issue occured. Added later for error handling.
+USERS_FILE = os.path.join(BASE_DIR, "users.json")
+SESSION_FILE = os.path.join(BASE_DIR, "user_session.json")
+
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
-# =======================
-# Registered User Dialog
-# =======================
 class RegisteredUserDialog(QDialog):
     def __init__(self):
         super().__init__()
         from PyQt5 import uic
         uic.loadUi("dialogRegisterdUser.ui", self)
 
-        # White font for all widgets
         for widget in self.findChildren(QWidget):
             widget.setStyleSheet("color: white;")
 
-        if hasattr(self, "submit_2"):
-            self.submit_2.clicked.connect(self.login_registered_user)
+        for line_edit in self.findChildren(QLineEdit):  #placeholder colour changed to accomdate background
+        
+            line_edit.setStyleSheet("""
+                color: white;                    
+                background-color: #333333;      
+                selection-color: white;
+                qlineedit::placeholder {          
+                color: white;
+            }
+        """)
+
+        if hasattr(self, "submit"):
+            self.submit.clicked.connect(self.login_registered_user)
 
         self.logged_in_user = None
 
@@ -43,51 +54,53 @@ class RegisteredUserDialog(QDialog):
             QMessageBox.warning(self, "Incomplete Data", "Please enter both username and password.")
             return
 
-        users_file = "users.json"
-
-        # Make sure users.json exists
-        if not os.path.exists(users_file):
-            with open(users_file, "w") as f:
+        if not os.path.exists(USERS_FILE):
+            with open(USERS_FILE, "w") as f:
                 json.dump({"users": []}, f)
 
-        # Load existing users safely
         try:
-            with open(users_file, "r") as f:
+            with open(USERS_FILE, "r") as f:
                 data = json.load(f)
                 if "users" not in data:
                     data["users"] = []
-        except (json.JSONDecodeError, FileNotFoundError):
+        except:
             data = {"users": []}
 
-        # Search for matching user
         for user in data.get("users", []):
-            if user["username"] == username and user["password"] == password:
-                self.logged_in_user = {"username": username, "email": user["email"]}
-                
-                # Save session
-                with open("user_session.json", "w") as f:
+            if user.get("username", "").strip() == username and \
+               user.get("password", "").strip() == password:
+
+                self.logged_in_user = {
+                    "username": username,
+                    "email": user.get("email", "")
+                }
+
+                with open(SESSION_FILE, "w") as f:
                     json.dump(self.logged_in_user, f)
-                
+
                 QMessageBox.information(self, "Welcome", f"Welcome back, {username}!")
-                self.accept()  # Allows LoginDialog to continue
+                self.accept()
                 return
 
-        # If no match found
         QMessageBox.warning(self, "Login Failed", "Incorrect username or password.")
 
 
-# =======================
-# Login / New User Dialog
-# =======================
 class LoginDialog(QDialog):
     def __init__(self):
         super().__init__()
         from PyQt5 import uic
         uic.loadUi("dialogLogin.ui", self)
 
-        # White font
         for widget in self.findChildren(QWidget):
             widget.setStyleSheet("color: white;")
+
+        for line_edit in self.findChildren(QLineEdit):
+            line_edit.setStyleSheet("""
+                color: white;                    
+                background-color: #333333;       
+                selection-background-color: #555555;
+                selection-color: white;
+            """)
 
         if hasattr(self, "submit"):
             self.submit.clicked.connect(self.new_user_submit)
@@ -105,32 +118,34 @@ class LoginDialog(QDialog):
             QMessageBox.warning(self, "Incomplete Data", "Please fill all fields")
             return
 
-        users_file = "users.json"
-        # Load safely
-        if os.path.exists(users_file):
+        if os.path.exists(USERS_FILE):
             try:
-                with open(users_file, "r") as f:
+                with open(USERS_FILE, "r") as f:
                     data = json.load(f)
                     if "users" not in data:
                         data["users"] = []
-            except json.JSONDecodeError:
+            except:
                 data = {"users": []}
         else:
             data = {"users": []}
 
-        # Check for duplicate username
         for user in data["users"]:
-            if user["username"] == username:
+            if user.get("username", "").strip() == username:
                 QMessageBox.warning(self, "Duplicate", "Username already exists")
                 return
 
-        # Add new user
-        data["users"].append({"username": username, "password": password, "email": email})
-        with open(users_file, "w") as f:
+        data["users"].append({
+            "username": username,
+            "password": password,
+            "email": email
+        })
+
+        with open(USERS_FILE, "w") as f:
             json.dump(data, f, indent=4)
 
         self.logged_in_user = {"username": username, "email": email}
-        with open("user_session.json", "w") as f:
+
+        with open(SESSION_FILE, "w") as f:
             json.dump(self.logged_in_user, f)
 
         QMessageBox.information(self, "Welcome", f"Welcome, {username}!")
@@ -143,9 +158,6 @@ class LoginDialog(QDialog):
             self.accept()
 
 
-# =======================
-# Main Application
-# =======================
 class MainWindow(QMainWindow):
     def __init__(self, user=None):
         super().__init__()
@@ -154,18 +166,14 @@ class MainWindow(QMainWindow):
         self.ui = Ui_CustomMainWindow()
         self.ui.setupUi(self)
 
-        # Top-right user button opens user page
         if hasattr(self.ui, "userButton"):
             self.ui.userButton.clicked.connect(self.open_user_page)
-        # Logout inside user page
         if hasattr(self.ui, "loginButton"):
             self.ui.loginButton.clicked.connect(self.logout_user)
 
-        # Persistent counters
         self.update_counter("calNumber1")
 
-        # Document history
-        self.history_file = "document_history.json"
+        self.history_file = os.path.join(BASE_DIR, "document_history.json")
         self.history = []
         self.load_history()
         self.history_table = None
@@ -176,13 +184,11 @@ class MainWindow(QMainWindow):
         self.piiDetection = []
         self.fileLoad = False
 
-        # Web viewer
         self.viewer = QWebEngineView(self.ui.scrollAreaWidgetContents)
         if self.ui.scrollAreaWidgetContents.layout() is None:
             self.ui.scrollAreaWidgetContents.setLayout(QVBoxLayout())
         self.ui.scrollAreaWidgetContents.layout().addWidget(self.viewer)
 
-        # Sidebar buttons
         self.buttons = [
             self.ui.homebutton,
             self.ui.anonymizebutton,
@@ -198,11 +204,12 @@ class MainWindow(QMainWindow):
             "border-left:3px solid #6082B6;"
             "font-weight:bold; color:#0000FF;"
         )
+
         for b in self.buttons:
             b.setStyleSheet(self.default)
+
         self.activateButton(self.ui.homebutton)
 
-        # Connect sidebar
         self.ui.homebutton.clicked.connect(lambda: self.menuOption("home"))
         self.ui.anonymizebutton.clicked.connect(lambda: self.menuOption("anonymize"))
         self.ui.restorebutton.clicked.connect(lambda: self.menuOption("restore"))
@@ -212,7 +219,6 @@ class MainWindow(QMainWindow):
         if hasattr(self.ui, "activityBar"):
             self.ui.activityBar.clicked.connect(lambda: self.menuOption("activity"))
 
-        # File buttons
         self.ui.uploadbutton.clicked.connect(self.uploadFile)
         if hasattr(self.ui, "uploadnewbutton"):
             self.ui.uploadnewbutton.clicked.connect(self.newFile)
@@ -227,16 +233,12 @@ class MainWindow(QMainWindow):
         if hasattr(self.ui, "restorebutton_2"):
             self.ui.restorebutton_2.clicked.connect(self.restore_file)
 
-        # Show username in user page
         if self.user and hasattr(self.ui, "lblUserName"):
             self.ui.lblUserName.setText(self.user.get("username", ""))
 
         self.ui.stackedWidget.setCurrentIndex(0)
         self.show()
 
-    # --------------------------
-    # Open user page
-    # --------------------------
     def open_user_page(self):
         if hasattr(self.ui, "stackedWidget") and hasattr(self.ui, "userPage"):
             self.ui.stackedWidget.setCurrentWidget(self.ui.userPage)
@@ -244,21 +246,15 @@ class MainWindow(QMainWindow):
         if self.user and hasattr(self.ui, "lblUserName"):
             self.ui.lblUserName.setText(self.user.get("username", ""))
 
-    # --------------------------
-    # Logout
-    # --------------------------
     def logout_user(self):
-        if os.path.exists("user_session.json"):
-            os.remove("user_session.json")
+        if os.path.exists(SESSION_FILE):
+            os.remove(SESSION_FILE)
         QMessageBox.information(self, "Logged Out", "You have been logged out.")
         self.close()
         sys.exit()
 
-    # --------------------------
-    # Counter & History Functions
-    # --------------------------
     def update_counter(self, counter_name, increment=False):
-        counter_file = "counters.json"
+        counter_file = os.path.join(BASE_DIR, "counters.json")
         if os.path.exists(counter_file):
             try:
                 with open(counter_file, "r") as f:
@@ -344,9 +340,6 @@ class MainWindow(QMainWindow):
                 self.set_table_item(row_index, 3, task_info)
         self.save_history()
 
-    # --------------------------
-    # Menu & Button Activation
-    # --------------------------
     def menuOption(self, option):
         if option == "home":
             self.activateButton(self.ui.homebutton)
@@ -377,9 +370,6 @@ class MainWindow(QMainWindow):
         for mainButtons in self.buttons:
             mainButtons.setStyleSheet(self.active if mainButtons == selectedButton else self.default)
 
-    # --------------------------
-    # File Handling & Preview
-    # --------------------------
     def uploadFile(self):
         path, _ = QFileDialog.getOpenFileName(self, "Documents (*.pdf *.txt);;All Files (*)")
         if not path:
@@ -505,17 +495,13 @@ class MainWindow(QMainWindow):
         self.update_counter("calNumber4", increment=True)
 
 
-# =======================
-# Run Application
-# =======================
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    # --- Check for existing session
     user_session = None
-    if os.path.exists("user_session.json"):
+    if os.path.exists(SESSION_FILE):
         try:
-            with open("user_session.json", "r") as f:
+            with open(SESSION_FILE, "r") as f:
                 user_session = json.load(f)
         except:
             user_session = None
